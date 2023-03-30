@@ -32,6 +32,9 @@
     "test:coverage": "nwb test-react --coverage",
     "test:watch": "nwb test-react --server"
   },
+  "dependencies": {
+    "hotkeys-js": "^3.10.1"
+  },
   "devDependencies": {
     "eslint": "^8.37.0",
     "eslint-config-airbnb": "^19.0.4",
@@ -51,7 +54,9 @@
   "peerDependencies": {
     "mirador": "3.x",
     "react": "16.x",
-    "react-dom": "16.x"
+    "react-dom": "16.x",
+    "redux-saga": "1.x",
+    "reselect": "4.x"
   },
   "engines": {
     "node": ">=16.0.0 <17.0.0",
