@@ -60,11 +60,20 @@ function* rootSaga() {
       case KeyboardEventTypes.TOGGLE_FULLSCREEN:
         yield call(handleFullscreenEvent);
         break;
-      default:
+      case KeyboardEventTypes.NAVIGATE_TO_FIRST_CANVAS:
+      case KeyboardEventTypes.NAVIGATE_TO_LAST_CANVAS:
+      case KeyboardEventTypes.NAVIGATE_TO_NEXT_CANVAS:
+      case KeyboardEventTypes.NAVIGATE_TO_PREVIOUS_CANVAS:
         yield call(handleCanvasNavigationEvent, {
           focusedWindowId,
           keyboardEventType,
         });
+        break;
+      default:
+        // eslint-disable-next-line no-console
+        console.warn(
+          `No handler for event type ${keyboardEventType} was found.`
+        );
         break;
     }
   }
