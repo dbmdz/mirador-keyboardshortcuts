@@ -15,22 +15,19 @@ import { call, put, select, take } from "redux-saga/effects";
 import { createKeyboardEventsChannel, KeyboardEventTypes } from "./events";
 import { getFocusedWindowId } from "./selectors";
 
-function* handleCanvasNavigationEvent({
-  focusedWindowId: windowId,
-  keyboardEventType,
-}) {
-  if (keyboardEventType === KeyboardEventTypes.NAVIGATE_TO_NEXT_CANVAS) {
+function* handleCanvasNavigationEvent({ eventType, windowId }) {
+  if (eventType === KeyboardEventTypes.NAVIGATE_TO_NEXT_CANVAS) {
     yield put(setNextCanvas(windowId));
     return;
   }
 
-  if (keyboardEventType === KeyboardEventTypes.NAVIGATE_TO_PREVIOUS_CANVAS) {
+  if (eventType === KeyboardEventTypes.NAVIGATE_TO_PREVIOUS_CANVAS) {
     yield put(setPreviousCanvas(windowId));
     return;
   }
 
   let canvasIndex = 0;
-  if (keyboardEventType === KeyboardEventTypes.NAVIGATE_TO_LAST_CANVAS) {
+  if (eventType === KeyboardEventTypes.NAVIGATE_TO_LAST_CANVAS) {
     const canvases = yield select(getCanvases, { windowId });
     canvasIndex = canvases.length - 1;
   }
@@ -54,9 +51,9 @@ function* handleFullscreenEvent() {
 function* rootSaga() {
   const keyboardEventsChannel = yield call(createKeyboardEventsChannel);
   while (true) {
-    const keyboardEventType = yield take(keyboardEventsChannel);
-    const focusedWindowId = yield select(getFocusedWindowId);
-    switch (keyboardEventType) {
+    const eventType = yield take(keyboardEventsChannel);
+    const windowId = yield select(getFocusedWindowId);
+    switch (eventType) {
       case KeyboardEventTypes.TOGGLE_FULLSCREEN:
         yield call(handleFullscreenEvent);
         break;
@@ -65,15 +62,13 @@ function* rootSaga() {
       case KeyboardEventTypes.NAVIGATE_TO_NEXT_CANVAS:
       case KeyboardEventTypes.NAVIGATE_TO_PREVIOUS_CANVAS:
         yield call(handleCanvasNavigationEvent, {
-          focusedWindowId,
-          keyboardEventType,
+          eventType,
+          windowId,
         });
         break;
       default:
         // eslint-disable-next-line no-console
-        console.warn(
-          `No handler for event type ${keyboardEventType} was found.`
-        );
+        console.warn(`No handler for event type ${eventType} was found.`);
         break;
     }
   }
