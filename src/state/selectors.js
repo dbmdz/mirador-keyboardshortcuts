@@ -1,4 +1,4 @@
-import { getWorkspace } from "mirador/dist/es/src/state/selectors";
+import { getConfig, getWorkspace } from "mirador/dist/es/src/state/selectors";
 import { createSelector } from "reselect";
 
 /* FIXME: remove this when Mirador exports this selector
@@ -8,4 +8,10 @@ const getFocusedWindowId = createSelector(
   ({ focusedWindowId }) => focusedWindowId
 );
 
-export { getFocusedWindowId };
+/** Selector to get the plugin config for a given window */
+const getPluginConfig = createSelector(
+  [getConfig],
+  ({ keyboardNavigation = {} }) => keyboardNavigation
+);
+
+export { getFocusedWindowId, getPluginConfig };

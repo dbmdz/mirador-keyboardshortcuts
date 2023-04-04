@@ -10,7 +10,7 @@ const KeyboardEventTypes = {
 };
 
 /** This mapping must always have the same keys as defined in KeyboardEventTypes! */
-const keyMapping = {
+const defaultKeyMapping = {
   [KeyboardEventTypes.NAVIGATE_TO_FIRST_CANVAS]: "ctrl+left",
   [KeyboardEventTypes.NAVIGATE_TO_LAST_CANVAS]: "ctrl+right",
   [KeyboardEventTypes.NAVIGATE_TO_NEXT_CANVAS]: "right,space",
@@ -18,10 +18,10 @@ const keyMapping = {
   [KeyboardEventTypes.TOGGLE_FULLSCREEN]: "enter",
 };
 
-const createKeyboardEventsChannel = () =>
+const createKeyboardEventsChannel = (keyMapping = {}) =>
   eventChannel((emit) => {
     Object.values(KeyboardEventTypes).forEach((eventType) => {
-      const key = keyMapping[eventType];
+      const key = keyMapping[eventType] ?? defaultKeyMapping[eventType];
       if (!key) {
         // eslint-disable-next-line no-console
         console.warn(

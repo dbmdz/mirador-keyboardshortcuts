@@ -4,16 +4,17 @@ import {
   setPreviousCanvas,
   setWorkspaceFullscreen,
 } from "mirador/dist/es/src/state/actions";
+import ActionTypes from "mirador/dist/es/src/state/actions/action-types";
 import {
   getCanvases,
   getCanvasGroupings,
   getFullScreenEnabled,
   getWindowViewType,
 } from "mirador/dist/es/src/state/selectors";
-import { call, put, select, take } from "redux-saga/effects";
+import { call, put, select, take, takeEvery } from "redux-saga/effects";
 
 import { createKeyboardEventsChannel, KeyboardEventTypes } from "./events";
-import { getFocusedWindowId } from "./selectors";
+import { getFocusedWindowId, getPluginConfig } from "./selectors";
 
 function* handleCanvasNavigationEvent({ eventType, windowId }) {
   if (eventType === KeyboardEventTypes.NAVIGATE_TO_NEXT_CANVAS) {
@@ -48,8 +49,12 @@ function* handleFullscreenEvent() {
   yield put(setWorkspaceFullscreen(!isFullscreenEnabled));
 }
 
-function* rootSaga() {
-  const keyboardEventsChannel = yield call(createKeyboardEventsChannel);
+function* initialise() {
+  const { keyMapping } = yield select(getPluginConfig);
+  const keyboardEventsChannel = yield call(
+    createKeyboardEventsChannel,
+    keyMapping
+  );
   while (true) {
     const eventType = yield take(keyboardEventsChannel);
     const windowId = yield select(getFocusedWindowId);
@@ -72,6 +77,10 @@ function* rootSaga() {
         break;
     }
   }
+}
+
+function* rootSaga() {
+  yield takeEvery(ActionTypes.IMPORT_CONFIG, initialise);
 }
 
 export default rootSaga;
