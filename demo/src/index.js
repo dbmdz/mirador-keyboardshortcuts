@@ -33,7 +33,7 @@ const config = {
     },
   ],
   keyboardNavigation: {
-    keyMapping: {
+    shortcutMapping: {
       "toggle-fullscreen": "f",
     },
   },

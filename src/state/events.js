@@ -10,7 +10,7 @@ const KeyboardEventTypes = {
 };
 
 /** This mapping must always have the same keys as defined in KeyboardEventTypes! */
-const defaultKeyMapping = {
+const defaultShortcutMapping = {
   [KeyboardEventTypes.NAVIGATE_TO_FIRST_CANVAS]: "ctrl+left",
   [KeyboardEventTypes.NAVIGATE_TO_LAST_CANVAS]: "ctrl+right",
   [KeyboardEventTypes.NAVIGATE_TO_NEXT_CANVAS]: "right,space",
@@ -18,11 +18,12 @@ const defaultKeyMapping = {
   [KeyboardEventTypes.TOGGLE_FULLSCREEN]: "enter",
 };
 
-const createKeyboardEventsChannel = (keyMapping = {}) =>
+const createKeyboardEventsChannel = (shortcutMapping = {}) =>
   eventChannel((emit) => {
     Object.values(KeyboardEventTypes).forEach((eventType) => {
-      const key = keyMapping[eventType] ?? defaultKeyMapping[eventType];
-      hotkeys(key, () => {
+      const shortcut =
+        shortcutMapping[eventType] ?? defaultShortcutMapping[eventType];
+      hotkeys(shortcut, () => {
         emit(eventType);
       });
     });
