@@ -1,6 +1,6 @@
 import Mirador from "mirador/dist/es/src/index";
 
-import keyboardNavigationPlugin, { KeyboardEventTypes } from "../../src";
+import keyboardNavigationPlugin from "../../src";
 
 const config = {
   catalog: [
@@ -34,7 +34,7 @@ const config = {
   ],
   keyboardNavigation: {
     keyMapping: {
-      [KeyboardEventTypes.TOGGLE_FULLSCREEN]: "f",
+      "toggle-fullscreen": "f",
     },
   },
 };
