@@ -50,10 +50,10 @@ function* handleFullscreenEvent() {
 }
 
 function* initialise() {
-  const { keyMapping } = yield select(getPluginConfig);
+  const { shortcutMapping } = yield select(getPluginConfig);
   const keyboardEventsChannel = yield call(
     createKeyboardEventsChannel,
-    keyMapping
+    shortcutMapping
   );
   while (true) {
     const eventType = yield take(keyboardEventsChannel);
