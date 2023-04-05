@@ -22,13 +22,6 @@ const createKeyboardEventsChannel = (keyMapping = {}) =>
   eventChannel((emit) => {
     Object.values(KeyboardEventTypes).forEach((eventType) => {
       const key = keyMapping[eventType] ?? defaultKeyMapping[eventType];
-      if (!key) {
-        // eslint-disable-next-line no-console
-        console.warn(
-          `No key for event type ${eventType} was found in the mapping.`
-        );
-        return;
-      }
       hotkeys(key, () => {
         emit(eventType);
       });
