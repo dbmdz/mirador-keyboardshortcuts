@@ -1,7 +1,7 @@
 {
   "name": "mirador-keyboardnavigation",
   "version": "0.1.0",
-  "description": "Mirador 3 plugin to add keyboard nagivation features",
+  "description": "Mirador 3 plugin to add keyboard shortcuts",
   "keywords": [
     "iiif",
     "mirador",
