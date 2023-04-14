@@ -11,6 +11,8 @@ A Mirador 3 plugin which adds keyboard shortcuts for the following events:
 - scroll to the last canvas (default shortcut: `ctrl+right`)
 - toggle fullscreen mode (default shortcut: `enter`)
 
+*Note:* the events will only apply to the currently focussed window.
+
 ## Installation
 
 Currently the plugin can only be used if you build your own Mirador JavaScript bundle.
@@ -30,7 +32,7 @@ Mirador.viewer(config, [...keyboardNavigationPlugin]);
 
 ## Configuration
 
-You can configure the plugin just globally by adding the `keyboardNavigation` entry to
+You can configure the plugin globally by adding the `keyboardNavigation` entry to
 the top-level configuration:
 
 ```javascript
@@ -38,6 +40,10 @@ const miradorConfig = {
   // ...
   keyboardNavigation: {
     // Global config, see available settings below
+    shortcutMapping: {
+      "navigate-to-first-canvas": "home",
+      "toggle-fullscreen": "f",
+    },
   },
   // ...
 }
