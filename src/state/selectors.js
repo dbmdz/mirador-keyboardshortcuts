@@ -11,7 +11,7 @@ const getFocusedWindowId = createSelector(
 /** Selector to get the plugin config for a given window */
 const getPluginConfig = createSelector(
   [getConfig],
-  ({ keyboardNavigation = {} }) => keyboardNavigation
+  ({ keyboardShortcuts = {} }) => keyboardShortcuts
 );
 
 export { getFocusedWindowId, getPluginConfig };
