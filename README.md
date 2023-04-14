@@ -1,4 +1,4 @@
-# mirador-keyboardnavigation
+# mirador-keyboardshortcuts
 
 [![npm package][npm-badge]][npm]
 [![required Mirador version][mirador-badge]][mirador]
@@ -17,28 +17,28 @@ A Mirador 3 plugin which adds keyboard shortcuts for the following events:
 
 Currently the plugin can only be used if you build your own Mirador JavaScript bundle.
 To include the plugin in your Mirador installation, you need to install it
-from npm with `npm install mirador-keyboardnavigation`, import it into your project
+from npm with `npm install mirador-keyboardshortcuts`, import it into your project
 and pass it to Mirador when you instantiate the viewer:
 
 ```javascript
 import Mirador from 'mirador/dist/es/src/index';
-import keyboardNavigationPlugin from 'mirador-keyboardnavigation/es';
+import keyboardShortcutsPlugin from 'mirador-keyboardshortcuts/es';
 
 const miradorConfig = {
   // Your Mirador configuration
 }
-Mirador.viewer(config, [...keyboardNavigationPlugin]);
+Mirador.viewer(config, [...keyboardShortcutsPlugin]);
 ```
 
 ## Configuration
 
-You can configure the plugin globally by adding the `keyboardNavigation` entry to
+You can configure the plugin globally by adding the `keyboardShortcuts` entry to
 the top-level configuration:
 
 ```javascript
 const miradorConfig = {
   // ...
-  keyboardNavigation: {
+  keyboardShortcuts: {
     // Global config, see available settings below
     shortcutMapping: {
       "navigate-to-first-canvas": "home",
@@ -73,10 +73,10 @@ starting the work, so we can discuss if it's a fit.
 
 **Note**: The package requires Node.js `16` and npm in major version `8`.
 
-[demo-cfg]: https://github.com/dbmdz/mirador-keyboardnavigation/blob/main/demo/src/index.js#L5-L40
-[event-types]: https://github.com/dbmdz/mirador-keyboardnavigation/blob/main/src/state/events.js#L5-L9
+[demo-cfg]: https://github.com/dbmdz/mirador-keyboardshortcuts/blob/main/demo/src/index.js#L5-L40
+[event-types]: https://github.com/dbmdz/mirador-keyboardshortcuts/blob/main/src/state/events.js#L5-L9
 [hotkeys-js]: https://wangchujiang.com/hotkeys/#defining-shortcuts
 [mirador]: https://github.com/ProjectMirador/mirador/releases/tag/v3.3.0
 [mirador-badge]: https://img.shields.io/badge/Mirador-%E2%89%A53.3.0-blueviolet
-[npm]: https://www.npmjs.org/package/mirador-keyboardnavigation
-[npm-badge]: https://img.shields.io/npm/v/mirador-keyboardnavigation.png?style=flat-square
+[npm]: https://www.npmjs.org/package/mirador-keyboardshortcuts
+[npm-badge]: https://img.shields.io/npm/v/mirador-keyboardshortcuts.png?style=flat-square

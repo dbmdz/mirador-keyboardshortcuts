@@ -3,7 +3,7 @@ module.exports = {
   npm: {
     esModules: true,
     umd: {
-      global: 'MiradorKeyboardNavigation',
+      global: 'MiradorKeyboardShortcuts',
       externals: {
         react: 'React'
       }

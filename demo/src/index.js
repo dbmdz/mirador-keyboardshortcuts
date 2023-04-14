@@ -1,6 +1,6 @@
 import Mirador from "mirador/dist/es/src/index";
 
-import keyboardNavigationPlugin from "../../src";
+import keyboardShortcutsPlugin from "../../src";
 
 const config = {
   catalog: [
@@ -32,11 +32,11 @@ const config = {
       view: "single",
     },
   ],
-  keyboardNavigation: {
+  keyboardShortcuts: {
     shortcutMapping: {
       "toggle-fullscreen": "f",
     },
   },
 };
 
-Mirador.viewer(config, [...keyboardNavigationPlugin]);
+Mirador.viewer(config, [...keyboardShortcutsPlugin]);

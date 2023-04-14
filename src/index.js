@@ -1,9 +1,9 @@
 import { KeyboardEventTypes } from "./state/events";
-import keyboardNavigationSaga from "./state/sagas";
+import keyboardShortcutsSaga from "./state/sagas";
 
 export default [
   {
-    saga: keyboardNavigationSaga,
+    saga: keyboardShortcutsSaga,
   },
 ];
 

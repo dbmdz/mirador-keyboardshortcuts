@@ -1,5 +1,5 @@
 {
-  "name": "mirador-keyboardnavigation",
+  "name": "mirador-keyboardshortcuts",
   "version": "0.1.0",
   "description": "Mirador 3 plugin to add keyboard shortcuts",
   "keywords": [
@@ -10,7 +10,7 @@
     "react-component"
   ],
   "homepage": "",
-  "repository": "https://github.com/dbmdz/mirador-keyboardnavigation",
+  "repository": "https://github.com/dbmdz/mirador-keyboardshortcuts",
   "license": "MIT",
   "author": "Matthias Lindinger <matthias.lindinger@bsb-muenchen.de>",
   "main": "lib/index.js",
