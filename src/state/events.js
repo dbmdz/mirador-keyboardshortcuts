@@ -23,7 +23,8 @@ const createKeyboardEventsChannel = (shortcutMapping = {}) =>
     Object.values(KeyboardEventTypes).forEach((eventType) => {
       const shortcut =
         shortcutMapping[eventType] ?? defaultShortcutMapping[eventType];
-      hotkeys(shortcut, () => {
+      hotkeys(shortcut, (evt) => {
+        evt.preventDefault();
         emit(eventType);
       });
     });
