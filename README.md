@@ -56,10 +56,10 @@ You can view an example configuration in [demo/src/index.js][demo-cfg].
 #### `shortcutMapping`
 
 This is an override for the default mapping of shortcut(s) to event type,
-the available event types can be found [here](event-types).
+the available event types can be found [here][event-types].
 
 You can either use e.g. `"navigate-to-first-canvas"` or `KeyboardEventTypes.NAVIGATE_TO_FIRST_CANVAS` as key,
-a documentation of the supported shortcuts given as value can be found [here](hotkeys-js).
+a documentation of the supported shortcuts given as value can be found [here][hotkeys-js].
 
 ## Contributing
 
