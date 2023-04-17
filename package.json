@@ -1,6 +1,6 @@
 {
   "name": "mirador-keyboardshortcuts",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Mirador 3 plugin to add keyboard shortcuts",
   "keywords": [
     "iiif",
