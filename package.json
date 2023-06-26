@@ -33,7 +33,7 @@
     "test:watch": "nwb test-react --server"
   },
   "dependencies": {
-    "hotkeys-js": "^3.10.2"
+    "hotkeys-js": "^3.10.3"
   },
   "devDependencies": {
     "eslint": "^8.43.0",
