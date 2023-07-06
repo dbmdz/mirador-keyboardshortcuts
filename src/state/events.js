@@ -6,6 +6,9 @@ const KeyboardEventTypes = {
   NAVIGATE_TO_LAST_CANVAS: "navigate-to-last-canvas",
   NAVIGATE_TO_NEXT_CANVAS: "navigate-to-next-canvas",
   NAVIGATE_TO_PREVIOUS_CANVAS: "navigate-to-previous-canvas",
+  SWITCH_TO_BOOK_VIEW: "switch-to-book-view",
+  SWITCH_TO_GALLERY_VIEW: "switch-to-gallery-view",
+  SWITCH_TO_SINGLE_VIEW: "switch-to-single-view",
   TOGGLE_FULLSCREEN: "toggle-fullscreen",
 };
 
@@ -15,7 +18,10 @@ const defaultShortcutMapping = {
   [KeyboardEventTypes.NAVIGATE_TO_LAST_CANVAS]: "ctrl+right",
   [KeyboardEventTypes.NAVIGATE_TO_NEXT_CANVAS]: "right,space",
   [KeyboardEventTypes.NAVIGATE_TO_PREVIOUS_CANVAS]: "left",
-  [KeyboardEventTypes.TOGGLE_FULLSCREEN]: "enter",
+  [KeyboardEventTypes.SWITCH_TO_BOOK_VIEW]: "b",
+  [KeyboardEventTypes.SWITCH_TO_GALLERY_VIEW]: "g",
+  [KeyboardEventTypes.SWITCH_TO_SINGLE_VIEW]: "s",
+  [KeyboardEventTypes.TOGGLE_FULLSCREEN]: "enter,f",
 };
 
 const createKeyboardEventsChannel = (shortcutMapping = {}) =>
