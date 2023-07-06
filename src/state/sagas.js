@@ -2,13 +2,16 @@ import {
   setCanvas,
   setNextCanvas,
   setPreviousCanvas,
+  setWindowViewType,
   setWorkspaceFullscreen,
 } from "mirador/dist/es/src/state/actions";
 import ActionTypes from "mirador/dist/es/src/state/actions/action-types";
 import {
+  getAllowedWindowViewTypes,
   getCanvases,
   getCanvasGroupings,
   getFullScreenEnabled,
+  getManifestUrl,
   getWindowViewType,
 } from "mirador/dist/es/src/state/selectors";
 import { call, put, select, take, takeEvery } from "redux-saga/effects";
@@ -49,6 +52,34 @@ function* handleFullscreenEvent() {
   yield put(setWorkspaceFullscreen(!isFullscreenEnabled));
 }
 
+function* handleViewTypeEvent({ eventType, windowId }) {
+  const manifestId = yield select(getManifestUrl, { windowId });
+  const allowedWindowViewTypes = yield select(getAllowedWindowViewTypes, {
+    manifestId,
+  });
+  switch (eventType) {
+    case KeyboardEventTypes.SWITCH_TO_BOOK_VIEW:
+      if (allowedWindowViewTypes.includes("book")) {
+        yield put(setWindowViewType(windowId, "book"));
+      }
+      break;
+    case KeyboardEventTypes.SWITCH_TO_GALLERY_VIEW:
+      if (allowedWindowViewTypes.includes("gallery")) {
+        yield put(setWindowViewType(windowId, "gallery"));
+      }
+      break;
+    case KeyboardEventTypes.SWITCH_TO_SINGLE_VIEW:
+      if (allowedWindowViewTypes.includes("single")) {
+        yield put(setWindowViewType(windowId, "single"));
+      }
+      break;
+    default:
+      // eslint-disable-next-line no-console
+      console.warn(`No handler for event type ${eventType} was found.`);
+      break;
+  }
+}
+
 function* initialise() {
   const { shortcutMapping } = yield select(getPluginConfig);
   const keyboardEventsChannel = yield call(
@@ -67,6 +98,14 @@ function* initialise() {
       case KeyboardEventTypes.NAVIGATE_TO_NEXT_CANVAS:
       case KeyboardEventTypes.NAVIGATE_TO_PREVIOUS_CANVAS:
         yield call(handleCanvasNavigationEvent, {
+          eventType,
+          windowId,
+        });
+        break;
+      case KeyboardEventTypes.SWITCH_TO_BOOK_VIEW:
+      case KeyboardEventTypes.SWITCH_TO_GALLERY_VIEW:
+      case KeyboardEventTypes.SWITCH_TO_SINGLE_VIEW:
+        yield call(handleViewTypeEvent, {
           eventType,
           windowId,
         });
