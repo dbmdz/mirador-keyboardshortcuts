@@ -53,7 +53,7 @@ function* initialise() {
   const { shortcutMapping } = yield select(getPluginConfig);
   const keyboardEventsChannel = yield call(
     createKeyboardEventsChannel,
-    shortcutMapping
+    shortcutMapping,
   );
   while (true) {
     const eventType = yield take(keyboardEventsChannel);

@@ -5,13 +5,13 @@ import { createSelector } from "reselect";
    see https://github.com/ProjectMirador/mirador/blob/v3.3.0/src/state/selectors/workspace.js#L29-L32 */
 const getFocusedWindowId = createSelector(
   [getWorkspace],
-  ({ focusedWindowId }) => focusedWindowId
+  ({ focusedWindowId }) => focusedWindowId,
 );
 
 /** Selector to get the plugin config for a given window */
 const getPluginConfig = createSelector(
   [getConfig],
-  ({ keyboardShortcuts = {} }) => keyboardShortcuts
+  ({ keyboardShortcuts = {} }) => keyboardShortcuts,
 );
 
 export { getFocusedWindowId, getPluginConfig };
