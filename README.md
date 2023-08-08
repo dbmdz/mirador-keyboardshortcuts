@@ -9,7 +9,10 @@ A Mirador 3 plugin which adds keyboard shortcuts for the following events:
 - scroll to the previous canvas (default shortcut: `left`)
 - scroll to the next canvas (default shortcuts: `right`, `space`)
 - scroll to the last canvas (default shortcut: `ctrl+right`)
-- toggle fullscreen mode (default shortcut: `enter`)
+- switch to book view (default shortcut: `b`)
+- switch to gallery view (default shortcut: `g`)
+- switch to single view (default shortcut: `s`)
+- toggle fullscreen mode (default shortcuts: `enter`, `f`)
 
 *Note:* the events will only apply to the currently focussed window.
 
@@ -74,8 +77,8 @@ starting the work, so we can discuss if it's a fit.
 **Note**: The package requires Node.js `16` and npm in major version `8`.
 
 [demo-cfg]: https://github.com/dbmdz/mirador-keyboardshortcuts/blob/main/demo/src/index.js#L5-L40
-[event-types]: https://github.com/dbmdz/mirador-keyboardshortcuts/blob/main/src/state/events.js#L5-L9
-[hotkeys-js]: https://wangchujiang.com/hotkeys/#defining-shortcuts
+[event-types]: https://github.com/dbmdz/mirador-keyboardshortcuts/blob/main/src/state/events.js#L5-L12
+[hotkeys-js]: https://wangchujiang.com/hotkeys-js/#defining-shortcuts
 [mirador]: https://github.com/ProjectMirador/mirador/releases/tag/v3.3.0
 [mirador-badge]: https://img.shields.io/badge/Mirador-%E2%89%A53.3.0-blueviolet
 [npm]: https://www.npmjs.org/package/mirador-keyboardshortcuts
