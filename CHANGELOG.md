@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 ## [Unreleased]
 
+## [0.2.1](https://github.com/dbmdz/mirador-keyboardshortcuts/releases/tag/0.2.1) - 2023-08-08
+
+### Fixed
+
+- Fixed README
+
 ## [0.2.0](https://github.com/dbmdz/mirador-keyboardshortcuts/releases/tag/0.2.0) - 2023-08-07
 
 ### Added
