@@ -1,15 +1,14 @@
-import { getConfig } from 'mirador/dist/es/src/state/selectors';
+import { getConfig } from "mirador/dist/es/src/state/selectors";
 
-import { KeyboardEventTypes } from './state/events';
-import keyboardShortcutsSaga from './state/sagas';
-
-import Workspace from './components/Workspace';
+import Workspace from "./components/Workspace";
+import { KeyboardEventTypes } from "./state/events";
+import keyboardShortcutsSaga from "./state/sagas";
 
 export default [
   {
     saga: keyboardShortcutsSaga,
-    target: 'Workspace',
-    mode: 'wrap',
+    target: "Workspace",
+    mode: "wrap",
     component: Workspace,
     mapStateToProps: (state) => ({
       keyboardShortcuts: getConfig(state).keyboardShortcuts,

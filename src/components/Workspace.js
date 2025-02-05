@@ -1,8 +1,8 @@
-import React, { useEffect, useContext } from 'react';
-import PropTypes from 'prop-types';
+import FullScreenContext from "mirador/dist/es/src/contexts/FullScreenContext";
+import PropTypes from "prop-types";
+import React, { useContext, useEffect } from "react";
 
-import FullScreenContext from 'mirador/dist/es/src/contexts/FullScreenContext';
-import { KeyboardEventTypes, defaultShortcutMapping } from '../state/events';
+import { defaultShortcutMapping, KeyboardEventTypes } from "../state/events";
 
 /** Wraps the mirador workspace so that fullscreen toggle is possible */
 function Workspace(props) {
@@ -18,7 +18,7 @@ function Workspace(props) {
         key === keyboardShortcuts.shortcutMapping[toggleType] ||
         defaultShortcutMapping[toggleType]
       ) {
-        if (handle.node.current.className.includes('enabled')) {
+        if (handle.node.current.className.includes("enabled")) {
           handle.exit();
         } else {
           handle.enter();
@@ -26,10 +26,10 @@ function Workspace(props) {
       }
     };
 
-    document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
 

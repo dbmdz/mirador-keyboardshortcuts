@@ -3,18 +3,19 @@ import {
   setNextCanvas,
   setPreviousCanvas,
   setWindowViewType,
-} from 'mirador/dist/es/src/state/actions';
-import ActionTypes from 'mirador/dist/es/src/state/actions/action-types';
+} from "mirador/dist/es/src/state/actions";
+import ActionTypes from "mirador/dist/es/src/state/actions/action-types";
 import {
   getAllowedWindowViewTypes,
   getCanvases,
   getCanvasGroupings,
   getManifestUrl,
   getWindowViewType,
-} from 'mirador/dist/es/src/state/selectors';
-import { call, put, select, take, takeEvery } from 'redux-saga/effects';
-import { createKeyboardEventsChannel, KeyboardEventTypes } from './events';
-import { getFocusedWindowId, getPluginConfig } from './selectors';
+} from "mirador/dist/es/src/state/selectors";
+import { call, put, select, take, takeEvery } from "redux-saga/effects";
+
+import { createKeyboardEventsChannel, KeyboardEventTypes } from "./events";
+import { getFocusedWindowId, getPluginConfig } from "./selectors";
 
 /**  */
 function* handleCanvasNavigationEvent({ eventType, windowId }) {
@@ -36,7 +37,8 @@ function* handleCanvasNavigationEvent({ eventType, windowId }) {
 
   const allGroupings = yield select(getCanvasGroupings, { windowId });
   const viewType = yield select(getWindowViewType, { windowId });
-  const groupIndex = viewType === 'book' ? Math.ceil(canvasIndex / 2) : canvasIndex;
+  const groupIndex =
+    viewType === "book" ? Math.ceil(canvasIndex / 2) : canvasIndex;
   const newGroup = allGroupings?.[groupIndex];
   const ids = (newGroup || []).map((c) => c.id);
   if (newGroup) {
@@ -52,18 +54,18 @@ function* handleViewTypeEvent({ eventType, windowId }) {
   });
   switch (eventType) {
     case KeyboardEventTypes.SWITCH_TO_BOOK_VIEW:
-      if (allowedWindowViewTypes.includes('book')) {
-        yield put(setWindowViewType(windowId, 'book'));
+      if (allowedWindowViewTypes.includes("book")) {
+        yield put(setWindowViewType(windowId, "book"));
       }
       break;
     case KeyboardEventTypes.SWITCH_TO_GALLERY_VIEW:
-      if (allowedWindowViewTypes.includes('gallery')) {
-        yield put(setWindowViewType(windowId, 'gallery'));
+      if (allowedWindowViewTypes.includes("gallery")) {
+        yield put(setWindowViewType(windowId, "gallery"));
       }
       break;
     case KeyboardEventTypes.SWITCH_TO_SINGLE_VIEW:
-      if (allowedWindowViewTypes.includes('single')) {
-        yield put(setWindowViewType(windowId, 'single'));
+      if (allowedWindowViewTypes.includes("single")) {
+        yield put(setWindowViewType(windowId, "single"));
       }
       break;
     default:
@@ -75,7 +77,10 @@ function* handleViewTypeEvent({ eventType, windowId }) {
 /**  */
 function* initialise() {
   const { shortcutMapping } = yield select(getPluginConfig);
-  const keyboardEventsChannel = yield call(createKeyboardEventsChannel, shortcutMapping);
+  const keyboardEventsChannel = yield call(
+    createKeyboardEventsChannel,
+    shortcutMapping,
+  );
   while (true) {
     const eventType = yield take(keyboardEventsChannel);
     const windowId = yield select(getFocusedWindowId);
