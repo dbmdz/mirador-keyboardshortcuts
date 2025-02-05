@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import FullScreenContext from 'mirador/dist/es/src/contexts/FullScreenContext';
 import { KeyboardEventTypes, defaultShortcutMapping } from '../state/events';
 
-/**  */
+/** Wraps the mirador workspace so that fullscreen toggle is possible */
 function Workspace(props) {
   const { TargetComponent, keyboardShortcuts } = props;
   const handle = useContext(FullScreenContext.Consumer);
