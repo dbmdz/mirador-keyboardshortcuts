@@ -3,14 +3,12 @@ import {
   setNextCanvas,
   setPreviousCanvas,
   setWindowViewType,
-  setWorkspaceFullscreen,
 } from "mirador/dist/es/src/state/actions";
 import ActionTypes from "mirador/dist/es/src/state/actions/action-types";
 import {
   getAllowedWindowViewTypes,
   getCanvases,
   getCanvasGroupings,
-  getFullScreenEnabled,
   getManifestUrl,
   getWindowViewType,
 } from "mirador/dist/es/src/state/selectors";
@@ -19,6 +17,7 @@ import { call, put, select, take, takeEvery } from "redux-saga/effects";
 import { createKeyboardEventsChannel, KeyboardEventTypes } from "./events";
 import { getFocusedWindowId, getPluginConfig } from "./selectors";
 
+/**  */
 function* handleCanvasNavigationEvent({ eventType, windowId }) {
   if (eventType === KeyboardEventTypes.NAVIGATE_TO_NEXT_CANVAS) {
     yield put(setNextCanvas(windowId));
@@ -47,11 +46,7 @@ function* handleCanvasNavigationEvent({ eventType, windowId }) {
   }
 }
 
-function* handleFullscreenEvent() {
-  const isFullscreenEnabled = yield select(getFullScreenEnabled);
-  yield put(setWorkspaceFullscreen(!isFullscreenEnabled));
-}
-
+/**  */
 function* handleViewTypeEvent({ eventType, windowId }) {
   const manifestId = yield select(getManifestUrl, { windowId });
   const allowedWindowViewTypes = yield select(getAllowedWindowViewTypes, {
@@ -79,7 +74,7 @@ function* handleViewTypeEvent({ eventType, windowId }) {
       break;
   }
 }
-
+/**  */
 function* initialise() {
   const { shortcutMapping } = yield select(getPluginConfig);
   const keyboardEventsChannel = yield call(
@@ -90,9 +85,6 @@ function* initialise() {
     const eventType = yield take(keyboardEventsChannel);
     const windowId = yield select(getFocusedWindowId);
     switch (eventType) {
-      case KeyboardEventTypes.TOGGLE_FULLSCREEN:
-        yield call(handleFullscreenEvent);
-        break;
       case KeyboardEventTypes.NAVIGATE_TO_FIRST_CANVAS:
       case KeyboardEventTypes.NAVIGATE_TO_LAST_CANVAS:
       case KeyboardEventTypes.NAVIGATE_TO_NEXT_CANVAS:
@@ -117,7 +109,7 @@ function* initialise() {
     }
   }
 }
-
+/**  */
 function* rootSaga() {
   yield takeEvery(ActionTypes.IMPORT_CONFIG, initialise);
 }

@@ -3,7 +3,7 @@
 [![npm package][npm-badge]][npm]
 [![required Mirador version][mirador-badge]][mirador]
 
-A Mirador 3 plugin which adds keyboard shortcuts for the following events:
+A Mirador 4 plugin which adds keyboard shortcuts for the following events:
 
 - scroll to the first canvas (default shortcut: `ctrl+left`)
 - scroll to the previous canvas (default shortcut: `left`)
@@ -79,7 +79,7 @@ starting the work, so we can discuss if it's a fit.
 [demo-cfg]: https://github.com/dbmdz/mirador-keyboardshortcuts/blob/main/demo/src/index.js#L5-L40
 [event-types]: https://github.com/dbmdz/mirador-keyboardshortcuts/blob/main/src/state/events.js#L5-L12
 [hotkeys-js]: https://wangchujiang.com/hotkeys-js/#defining-shortcuts
-[mirador]: https://github.com/ProjectMirador/mirador/releases/tag/v3.3.0
+[mirador]: https://github.com/ProjectMirador/mirador/releases/tag/v4.0.0.alpha-1
 [mirador-badge]: https://img.shields.io/badge/Mirador-%E2%89%A53.3.0-blueviolet
 [npm]: https://www.npmjs.org/package/mirador-keyboardshortcuts
 [npm-badge]: https://img.shields.io/npm/v/mirador-keyboardshortcuts.png?style=flat-square
