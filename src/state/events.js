@@ -24,6 +24,7 @@ const defaultShortcutMapping = {
   [KeyboardEventTypes.TOGGLE_FULLSCREEN]: "enter,f",
 };
 
+/**  */
 const createKeyboardEventsChannel = (shortcutMapping = {}) =>
   eventChannel((emit) => {
     Object.values(KeyboardEventTypes).forEach((eventType) => {
@@ -37,4 +38,8 @@ const createKeyboardEventsChannel = (shortcutMapping = {}) =>
     return () => hotkeys.unbind();
   });
 
-export { createKeyboardEventsChannel, KeyboardEventTypes };
+export {
+  createKeyboardEventsChannel,
+  defaultShortcutMapping,
+  KeyboardEventTypes,
+};
