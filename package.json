@@ -36,27 +36,27 @@
     "hotkeys-js": "^3.13.7"
   },
   "devDependencies": {
-    "eslint": "^8.57.0",
+    "eslint": "^9.0.0",
     "eslint-config-airbnb": "^19.0.4",
-    "eslint-config-prettier": "^9.1.0",
+    "eslint-config-prettier": "^10.0.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-jsx-a11y": "^6.9.0",
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-react": "^7.35.0",
-    "eslint-plugin-react-hooks": "^4.6.2",
+    "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "mirador": "^3.3.0",
     "nwb": "^0.25.2",
     "prettier": "^3.3.3",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "peerDependencies": {
     "mirador": "3.x",
-    "react": "16.x",
-    "react-dom": "16.x",
+    "react": "19.x",
+    "react-dom": "19.x",
     "redux-saga": "1.x",
-    "reselect": "4.x"
+    "reselect": "5.x"
   },
   "engines": {
     "npm": ">=8.0.0"
