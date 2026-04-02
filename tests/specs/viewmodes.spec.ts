@@ -1,6 +1,34 @@
 import { test, expect } from '@playwright/test';
 import { locators } from '../locators/mirador';
 
+async function checkExpectedView(page: any, expected: 'single' | 'book' | 'gallery' ) {
+    // click on "Window views & thumbnail display" button
+    await page.locator('button[aria-label="Window views & thumbnail display"]').click();
+    // fetch the menu
+    const menu = page.locator('ul.MuiMenu-list');
+    const icons = menu.locator('svg[value]');
+
+    // now check of the first three icons, which icon is highlighted and read its value below
+    let selectedValue: string | null = null;
+    let selectedCount = 0;
+
+    for (let i = 0; i < 3; i++) {
+        const icon = icons.nth(i);
+        const classAttr = await icon.getAttribute('class');
+
+        if (classAttr?.includes('MuiSvgIcon-colorSecondary')) {
+        selectedCount++;
+        selectedValue = await icon.getAttribute('value');
+        }
+    }
+
+    expect(selectedCount).toBe(1);
+    expect(selectedValue).toBe(expected);
+
+    // close the popup
+    await page.keyboard.press('Escape');
+}
+
 test('view modes by keyboard', async({page}) => {
 
    await test.step('load demo page', async() => {
@@ -8,7 +36,7 @@ test('view modes by keyboard', async({page}) => {
         await page.goto('http://localhost:3000');
 
         // verify, that the page is loaded, initial in single view mode
-        await expect(page.locator(locators.single)).toBeVisible();
+        await checkExpectedView(page, "single");
     });     
 
    await test.step('change to gallery view', async() => {
@@ -16,7 +44,7 @@ test('view modes by keyboard', async({page}) => {
         await page.keyboard.press('g');
 
         // verify, that we are in the gallery view
-        await expect(page.locator(locators.gallery)).toBeVisible();
+        await checkExpectedView(page, "gallery");
     });
 
     await test.step('change to book view', async() => {
@@ -24,6 +52,6 @@ test('view modes by keyboard', async({page}) => {
         await page.keyboard.press('b');
 
         // verify, that we are in the book view
-        await expect(page.locator(locators.book)).toBeVisible();
+        await checkExpectedView(page, "book");
     });
 });
