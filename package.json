@@ -33,6 +33,9 @@
     "preview": "BUILD_MODE=demo vite preview",
     "start": "vite"
   },
+  "dependencies": {
+    "hotkeys-js": "^4.0.2"
+  },
   "devDependencies": {
     "@eslint/compat": "^2.0.3",
     "@eslint/eslintrc": "^3.3.5",
