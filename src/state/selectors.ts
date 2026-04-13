@@ -3,13 +3,13 @@ import { createSelector } from "reselect";
 
 const getFocusedWindowId= createSelector(
     [getWindowConfig],
-    ({ focusedWindowId }) => focusedWindowId,
+    (windowConfig) => { return windowConfig.focusedWindowId; }
 );
 
 /** Selector to get the plugin config for a given window */
 const getPluginConfig = createSelector(
   [getWindowConfig],
-  ({ keyboardShortcuts = {} }) => keyboardShortcuts,
+  (windowConfig) => { return windowConfig.keyboardShortcuts ?? {} }
 );
 
 export { getFocusedWindowId, getPluginConfig };

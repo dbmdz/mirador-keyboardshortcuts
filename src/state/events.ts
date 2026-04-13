@@ -40,3 +40,4 @@ const createKeyboardEventsChannel = (shortcutMapping: Partial<Record<EventType, 
   });
 
 export { createKeyboardEventsChannel, KeyboardEventTypes };
+export type { EventType };

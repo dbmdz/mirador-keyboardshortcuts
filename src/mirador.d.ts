@@ -1,58 +1,58 @@
 declare module "mirador" {
+  import { Selector } from "reselect";
+
   export function viewer(
     config: Record<string, unknown>,
     plugins?: unknown[],
   ): void;
 
-  export const getWindowConfig: import("reselect").Selector<
-    Record<string, unknown>
-  >;
+  export const getWindowConfig: Selector<Record<string, unknown>>;
 }  
 
-declare module "mirador/selectors" {
-  export function getAllowedWindowViewTypes(any): [];
+declare module "mirador/src" {
+  import { Selector } from "reselect";
 
-  export function getCanvases(): any
+  export const ActionTypes: {
+    IMPORT_CONFIG: string;
+    [key: string]: string;
+  };
 
-  export function getCanvasGroupings(
-    manifestId: string,
-    windowId: string
-  ): []
+  export const getAllowedWindowViewTypes: Selector<any, any, string[]>;
 
-  export function getFullScreenEnabled(): boolean
+  export const getCanvases: Selector<any, any, any[]>;
 
-  export function getManifestUrl(); string
+  export const getCanvasGroupings: Selector<any, any, any[]>;
 
-  export function getWindowViewType(
-    manifestId: string,
-    windowId: string
-  ): string
-}
+  export const getFullScreenEnabled: Selector<any, any, string>;
 
-declare module "mirador/actions" {
+  export const getManifestUrl: Selector<any, any, string>;
+
+  export const getWindowViewType: Selector<any, any, string>;
+
   export function setCanvas(
     windowId: string,
-    canvasId: string
-  ): function(dispatch, getState);
+    canvasId: string,
+    visibleCanvases?: string[],
+    options?: Record<string, unknown>
+  ): any;
 
   export function setNextCanvas(
     windowId: string
-  ): function(dispatch, getState);
+  ): any;
 
   export function setPreviousCanvas(
     windowId: string
-  ): function(dispatch, getState);
+  ): any;
 
   export function setWindowViewType(
     windowId: string,
-    viewType: any
-  ): ActionCreators;
+    viewType: string
+  ): any;
 
+  /* seems not to exist
   export function setWorkspaceFullscreen(
     isFullscreenEnabled: boolean
-  ): string;
+  ): any;
+  */
 }
 
-declare module "mirador/actions/action-types" {
-  export const IMPORT_CONFIG: string;
-}

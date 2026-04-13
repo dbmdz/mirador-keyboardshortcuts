@@ -1,27 +1,24 @@
 import {
-  setCanvas,
-  setNextCanvas,
-  setPreviousCanvas,
-  setWindowViewType,
-  setWorkspaceFullscreen,
-} from "mirador/actions";
-import ActionTypes from "mirador/actions/action-types";
-import {
+  ActionTypes,
   getAllowedWindowViewTypes,
   getCanvases,
   getCanvasGroupings,
   getFullScreenEnabled,
   getManifestUrl,
   getWindowViewType,
-} from "mirador/selectors";
-
+  setCanvas,
+  setNextCanvas,
+  setPreviousCanvas,
+  setWindowViewType,
+  //setWorkspaceFullscreen,
+} from "mirador/src";
 
 import { call, put, select, take, takeEvery } from "redux-saga/effects";
 
-import { createKeyboardEventsChannel, KeyboardEventTypes } from "./events";
+import { createKeyboardEventsChannel, KeyboardEventTypes, EventType } from "./events";
 import { getFocusedWindowId, getPluginConfig } from "./selectors";
 
-function* handleCanvasNavigationEvent({ eventType, windowId }) {
+function* handleCanvasNavigationEvent({ eventType, windowId }: { eventType: EventType; windowId: string }): Generator<any, void, any> {
   if (eventType === KeyboardEventTypes.NAVIGATE_TO_NEXT_CANVAS) {
     yield put(setNextCanvas(windowId));
     return;
@@ -34,7 +31,7 @@ function* handleCanvasNavigationEvent({ eventType, windowId }) {
 
   let canvasIndex = 0;
   if (eventType === KeyboardEventTypes.NAVIGATE_TO_LAST_CANVAS) {
-    const canvases = yield select(getCanvases, { windowId });
+    const canvases: any = (yield select(getCanvases, { windowId })) as any;
     canvasIndex = canvases.length - 1;
   }
 
@@ -43,22 +40,24 @@ function* handleCanvasNavigationEvent({ eventType, windowId }) {
   const groupIndex =
     viewType === "book" ? Math.ceil(canvasIndex / 2) : canvasIndex;
   const newGroup = allGroupings?.[groupIndex];
-  const ids = (newGroup || []).map((c) => c.id);
+  const ids = (newGroup || []).map((c: any) => c.id);
   if (newGroup) {
-    yield put(setCanvas(windowId, ids[0], ids));
+    yield put(setCanvas(windowId, ids[0], ids) as any);
   }
 }
 
 function* handleFullscreenEvent() {
-  const isFullscreenEnabled = yield select(getFullScreenEnabled);
+  /* does not work yet
+  const isFullscreenEnabled: boolean = (yield select(getFullScreenEnabled)) as boolean;
   yield put(setWorkspaceFullscreen(!isFullscreenEnabled));
+  */
 }
 
-function* handleViewTypeEvent({ eventType, windowId }) {
-  const manifestId = yield select(getManifestUrl, { windowId });
-  const allowedWindowViewTypes = yield select(getAllowedWindowViewTypes, {
-    manifestId,
-  });
+function* handleViewTypeEvent({ eventType, windowId } : { eventType: EventType; windowId: string }): Generator<any, void, any> {
+  const manifestId: string = (yield select(getManifestUrl, { windowId })) as string;
+  const allowedWindowViewTypes: string[] = (yield select(getAllowedWindowViewTypes as any, {
+      manifestId,
+    })) as any;
   switch (eventType) {
     case KeyboardEventTypes.SWITCH_TO_BOOK_VIEW:
       if (allowedWindowViewTypes.includes("book")) {
@@ -82,7 +81,7 @@ function* handleViewTypeEvent({ eventType, windowId }) {
   }
 }
 
-function* initialise() {
+function* initialise(): Generator<any, void, any> {
   const { shortcutMapping } = yield select(getPluginConfig);
   const keyboardEventsChannel = yield call(
     createKeyboardEventsChannel,
