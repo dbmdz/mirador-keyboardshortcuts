@@ -3,7 +3,6 @@ import {
   getAllowedWindowViewTypes,
   getCanvases,
   getCanvasGroupings,
-  getFullScreenEnabled,
   getManifestUrl,
   getWindowViewType,
   setCanvas,
