@@ -21,6 +21,9 @@ const config = {
     },
   ],
   id: "demo",
+  keyboardShortcuts: {
+    enabled: true,
+  },
   window: {
     allowFullscreen: true,
   },
