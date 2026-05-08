@@ -24,8 +24,8 @@ from npm with `npm install mirador-keyboardshortcuts`, import it into your proje
 and pass it to Mirador when you instantiate the viewer:
 
 ```javascript
-import Mirador from 'mirador/dist/es/src/index';
-import keyboardShortcutsPlugin from 'mirador-keyboardshortcuts/es';
+import Mirador from 'mirador';
+import keyboardShortcutsPlugin from 'mirador-keyboardshortcuts';
 
 const miradorConfig = {
   // Your Mirador configuration
