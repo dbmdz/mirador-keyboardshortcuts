@@ -101,7 +101,7 @@ function* handleViewTypeEvent({
 
 function* initialise(): Generator<any, void, any> {
   const config = yield select(getConfig);
-  const { shortcutMapping } = config?.keyboardShortcuts;
+  const { shortcutMapping } = config?.keyboardShortcuts ?? {};
   const keyboardEventsChannel = yield call(
     createKeyboardEventsChannel,
     shortcutMapping,
