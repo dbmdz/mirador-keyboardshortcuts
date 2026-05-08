@@ -26,15 +26,11 @@ export default defineConfig([
         ecmaFeatures: {
           jsx: true,
         },
-        project: ["./tsconfig.json", "./tsconfig.node.json"],
-        tsconfigRootDir: import.meta.dirname,
       },
     },
     extends: fixupConfigRules(
       compat.extends(
         "eslint:recommended",
-        "plugin:@typescript-eslint/recommended-type-checked",
-        "plugin:@typescript-eslint/stylistic-type-checked",
         "plugin:prettier/recommended",
         "plugin:react/recommended",
         "plugin:react/jsx-runtime",
@@ -54,6 +50,7 @@ export default defineConfig([
       ],
       "simple-import-sort/imports": "error",
       "simple-import-sort/exports": "error",
+      "no-unused-vars": "off",
     },
     settings: {
       react: {

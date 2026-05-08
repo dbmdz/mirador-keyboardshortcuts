@@ -23,6 +23,7 @@ const config = {
   id: "demo",
   window: {
     allowFullscreen: true,
+    // TODO: Keyboard Shortcuts dort einbauen
   },
   windows: [
     {
