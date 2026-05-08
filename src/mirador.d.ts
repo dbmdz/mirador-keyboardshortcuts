@@ -1,10 +1,7 @@
 declare module "mirador" {
   import { Selector } from "reselect";
 
-  export function viewer(
-    config: Record<string, unknown>,
-    plugins?: unknown[],
-  ): void;
+  export function viewer(): void;
 
   export const ActionTypes: {
     IMPORT_CONFIG: string;
@@ -34,16 +31,11 @@ declare module "mirador" {
 
   export const getWindowViewType: Selector<any, any, any>;
 
-  export function setCanvas(
-    windowId: string,
-    canvasId: string,
-    visibleCanvases?: string[],
-    options?: Record<string, unknown>,
-  ): any;
+  export function setCanvas(): any;
 
-  export function setNextCanvas(windowId: string): any;
+  export function setNextCanvas(): any;
 
-  export function setPreviousCanvas(windowId: string): any;
+  export function setPreviousCanvas(): any;
 
-  export function setWindowViewType(windowId: string, viewType: string): any;
+  export function setWindowViewType(): any;
 }
