@@ -21,11 +21,9 @@ const config = {
     },
   ],
   id: "demo",
-  keyboardShortcuts: {
-    enabled: true,
-  },
   window: {
     allowFullscreen: true,
+    // TODO: Keyboard Shortcuts dort einbauen
   },
   windows: [
     {

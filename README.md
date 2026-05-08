@@ -74,8 +74,6 @@ contributions :-)
 For larger changes/features, it's usually wise to open an issue before
 starting the work, so we can discuss if it's a fit.
 
-**Note**: The package requires Node.js `24` and npm in major version `11`.
-
 [demo-cfg]: https://github.com/dbmdz/mirador4-keyboardshortcuts/blob/main/src/demo.js#L5-L35
 [event-types]: https://github.com/dbmdz/mirador4-keyboardshortcuts/blob/main/src/state/events.ts#L5-L12
 [hotkeys-js]: https://wangchujiang.com/hotkeys-js/#defining-shortcuts
