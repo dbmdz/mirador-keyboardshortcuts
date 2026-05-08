@@ -50,6 +50,7 @@ export default defineConfig([
       ],
       "simple-import-sort/imports": "error",
       "simple-import-sort/exports": "error",
+      "no-unused-vars": "off",
     },
     settings: {
       react: {
