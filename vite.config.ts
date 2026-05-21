@@ -26,7 +26,7 @@ const pluginConfig: UserConfig = {
       },
     },
   },
-  plugins: [react(), dts({ include: ["src"], exclude: "src/demo.ts" })],
+  plugins: [react(), dts({ include: ["src"] })],
   server: {
     open: true,
   },
