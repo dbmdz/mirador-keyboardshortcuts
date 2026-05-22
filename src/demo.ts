@@ -1,6 +1,6 @@
 import Mirador from "mirador";
 
-import Plugin from "../../src";
+import Plugin from ".";
 
 const config = {
   catalog: [
