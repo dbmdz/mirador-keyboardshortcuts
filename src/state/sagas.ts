@@ -40,7 +40,7 @@ function* handleCanvasNavigationEvent({
 
   let canvasIndex = 0;
   if (eventType === KeyboardEventTypes.NAVIGATE_TO_LAST_CANVAS) {
-    const canvases: any = yield select(getCanvases, { windowId });
+    const canvases = yield select(getCanvases, { windowId });
     canvasIndex = canvases.length - 1;
   }
 

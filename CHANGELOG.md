@@ -6,11 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 ## [Unreleased]
 
-## 1.0.0
 
 ### Changed
 
-- Migrate to Mirador 4
+- **Breaking**: Migrate to Mirador 4
 
 ## [0.2.1](https://github.com/dbmdz/mirador-keyboardshortcuts/releases/tag/0.2.1) - 2023-08-08
 

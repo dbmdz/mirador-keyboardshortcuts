@@ -10,7 +10,7 @@ const KeyboardEventTypes = {
   SWITCH_TO_GALLERY_VIEW: "switch-to-gallery-view",
   SWITCH_TO_SINGLE_VIEW: "switch-to-single-view",
   TOGGLE_FULLSCREEN: "toggle-fullscreen",
-} as const;
+};
 
 type EventType = (typeof KeyboardEventTypes)[keyof typeof KeyboardEventTypes];
 

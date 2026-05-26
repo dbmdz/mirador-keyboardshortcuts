@@ -20,6 +20,8 @@ const pluginConfig: UserConfig = {
         "react",
         "react-dom",
         "react-i18next",
+        "react/jsx-runtime",
+        "react/jsx-dev-runtime"
       ],
       output: {
         entryFileNames: "[name].js",

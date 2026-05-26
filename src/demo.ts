@@ -21,6 +21,11 @@ const config = {
     },
   ],
   id: "demo",
+  keyboardShortcuts: {
+    shortcutMappings: {
+      //"switch-to-book-view": "b"
+    },
+  },
   window: {
     allowFullscreen: true,
     // TODO: Keyboard Shortcuts dort einbauen
