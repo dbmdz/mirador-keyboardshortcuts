@@ -49,7 +49,7 @@ function* handleCanvasNavigationEvent({
   const groupIndex =
     viewType === "book" ? Math.ceil(canvasIndex / 2) : canvasIndex;
   const newGroup = allGroupings?.[groupIndex];
-  const ids = (newGroup || []).map((c: any) => c.id);
+  const ids = (newGroup ?? []).map((c: any) => c.id);
   if (newGroup) {
     yield put(setCanvas(windowId, ids[0], ids));
   }
