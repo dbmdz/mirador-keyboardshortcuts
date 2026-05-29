@@ -76,7 +76,7 @@ starting the work, so we can discuss if it's a fit.
 
 **Note**: The package requires Node.js `24` and npm in major version `11`.
 
-[demo-cfg]: https://github.com/dbmdz/mirador-keyboardshortcuts/blob/main/src/demo.ts#L5-L38
+[demo-cfg]: https://github.com/dbmdz/mirador-keyboardshortcuts/blob/main/src/demo.ts#L5-L41
 [event-types]: https://github.com/dbmdz/mirador-keyboardshortcuts/blob/main/src/state/events.ts#L5-L12
 [hotkeys-js]: https://wangchujiang.com/hotkeys-js/#defining-shortcuts
 [mirador]: https://github.com/ProjectMirador/mirador/releases/tag/v4.0.0
