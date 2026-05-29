@@ -3,7 +3,7 @@
 [![npm package][npm-badge]][npm]
 [![required Mirador version][mirador-badge]][mirador]
 
-A Mirador 3 plugin which adds keyboard shortcuts for the following events:
+A Mirador 4 plugin which adds keyboard shortcuts for the following events:
 
 - scroll to the first canvas (default shortcut: `ctrl+left`)
 - scroll to the previous canvas (default shortcut: `left`)
@@ -24,8 +24,8 @@ from npm with `npm install mirador-keyboardshortcuts`, import it into your proje
 and pass it to Mirador when you instantiate the viewer:
 
 ```javascript
-import Mirador from 'mirador/dist/es/src/index';
-import keyboardShortcutsPlugin from 'mirador-keyboardshortcuts/es';
+import Mirador from 'mirador';
+import keyboardShortcutsPlugin from 'mirador-keyboardshortcuts';
 
 const miradorConfig = {
   // Your Mirador configuration
@@ -52,7 +52,7 @@ const miradorConfig = {
 }
 ```
 
-You can view an example configuration in [demo/src/index.js][demo-cfg].
+You can view an example configuration in [src/demo.ts][demo-cfg].
 
 ### Available settings
 
@@ -74,12 +74,12 @@ contributions :-)
 For larger changes/features, it's usually wise to open an issue before
 starting the work, so we can discuss if it's a fit.
 
-**Note**: The package requires Node.js `16` and npm in major version `8`.
+**Note**: The package requires Node.js `24` and npm in major version `11`.
 
-[demo-cfg]: https://github.com/dbmdz/mirador-keyboardshortcuts/blob/main/demo/src/index.js#L5-L40
-[event-types]: https://github.com/dbmdz/mirador-keyboardshortcuts/blob/main/src/state/events.js#L5-L12
+[demo-cfg]: https://github.com/dbmdz/mirador-keyboardshortcuts/blob/main/src/demo.ts#L5-L41
+[event-types]: https://github.com/dbmdz/mirador-keyboardshortcuts/blob/main/src/state/events.ts#L5-L12
 [hotkeys-js]: https://wangchujiang.com/hotkeys-js/#defining-shortcuts
-[mirador]: https://github.com/ProjectMirador/mirador/releases/tag/v3.3.0
-[mirador-badge]: https://img.shields.io/badge/Mirador-%E2%89%A53.3.0-blueviolet
+[mirador]: https://github.com/ProjectMirador/mirador/releases/tag/v4.0.0
+[mirador-badge]: https://img.shields.io/badge/Mirador-%E2%89%A54.0.0-blueviolet
 [npm]: https://www.npmjs.org/package/mirador-keyboardshortcuts
 [npm-badge]: https://img.shields.io/npm/v/mirador-keyboardshortcuts.png?style=flat-square

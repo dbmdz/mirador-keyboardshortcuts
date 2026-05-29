@@ -1,25 +1,33 @@
 import {
+  ActionTypes,
+  getAllowedWindowViewTypes,
+  getCanvases,
+  getCanvasGroupings,
+  getConfig,
+  getFocusedWindowId,
+  getFullScreenEnabled,
+  getManifestUrl,
+  getWindowViewType,
   setCanvas,
   setNextCanvas,
   setPreviousCanvas,
   setWindowViewType,
-  setWorkspaceFullscreen,
-} from "mirador/dist/es/src/state/actions";
-import ActionTypes from "mirador/dist/es/src/state/actions/action-types";
-import {
-  getAllowedWindowViewTypes,
-  getCanvases,
-  getCanvasGroupings,
-  getFullScreenEnabled,
-  getManifestUrl,
-  getWindowViewType,
-} from "mirador/dist/es/src/state/selectors";
+} from "mirador";
 import { call, put, select, take, takeEvery } from "redux-saga/effects";
 
-import { createKeyboardEventsChannel, KeyboardEventTypes } from "./events";
-import { getFocusedWindowId, getPluginConfig } from "./selectors";
+import {
+  createKeyboardEventsChannel,
+  EventType,
+  KeyboardEventTypes,
+} from "./events";
 
-function* handleCanvasNavigationEvent({ eventType, windowId }) {
+function* handleCanvasNavigationEvent({
+  eventType,
+  windowId,
+}: {
+  eventType: EventType;
+  windowId: string;
+}): Generator<any, void, any> {
   if (eventType === KeyboardEventTypes.NAVIGATE_TO_NEXT_CANVAS) {
     yield put(setNextCanvas(windowId));
     return;
@@ -41,22 +49,34 @@ function* handleCanvasNavigationEvent({ eventType, windowId }) {
   const groupIndex =
     viewType === "book" ? Math.ceil(canvasIndex / 2) : canvasIndex;
   const newGroup = allGroupings?.[groupIndex];
-  const ids = (newGroup || []).map((c) => c.id);
+  const ids = (newGroup ?? []).map((c: any) => c.id);
   if (newGroup) {
     yield put(setCanvas(windowId, ids[0], ids));
   }
 }
 
 function* handleFullscreenEvent() {
-  const isFullscreenEnabled = yield select(getFullScreenEnabled);
-  yield put(setWorkspaceFullscreen(!isFullscreenEnabled));
+  const isFullscreenEnabled: boolean = yield select(getFullScreenEnabled);
+  yield put({
+    isFullscreenEnabled: !isFullscreenEnabled,
+    type: ActionTypes.SET_WORKSPACE_FULLSCREEN,
+  });
 }
 
-function* handleViewTypeEvent({ eventType, windowId }) {
-  const manifestId = yield select(getManifestUrl, { windowId });
-  const allowedWindowViewTypes = yield select(getAllowedWindowViewTypes, {
-    manifestId,
-  });
+function* handleViewTypeEvent({
+  eventType,
+  windowId,
+}: {
+  eventType: EventType;
+  windowId: string;
+}): Generator<any, void, any> {
+  const manifestId: string = yield select(getManifestUrl, { windowId });
+  const allowedWindowViewTypes: string[] = yield select(
+    getAllowedWindowViewTypes as any,
+    {
+      manifestId,
+    },
+  );
   switch (eventType) {
     case KeyboardEventTypes.SWITCH_TO_BOOK_VIEW:
       if (allowedWindowViewTypes.includes("book")) {
@@ -74,14 +94,14 @@ function* handleViewTypeEvent({ eventType, windowId }) {
       }
       break;
     default:
-      // eslint-disable-next-line no-console
       console.warn(`No handler for event type ${eventType} was found.`);
       break;
   }
 }
 
-function* initialise() {
-  const { shortcutMapping } = yield select(getPluginConfig);
+function* initialise(): Generator<any, void, any> {
+  const config = yield select(getConfig);
+  const { shortcutMapping } = config?.keyboardShortcuts ?? {};
   const keyboardEventsChannel = yield call(
     createKeyboardEventsChannel,
     shortcutMapping,
@@ -111,7 +131,6 @@ function* initialise() {
         });
         break;
       default:
-        // eslint-disable-next-line no-console
         console.warn(`No handler for event type ${eventType} was found.`);
         break;
     }

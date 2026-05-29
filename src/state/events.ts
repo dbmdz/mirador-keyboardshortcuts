@@ -12,8 +12,10 @@ const KeyboardEventTypes = {
   TOGGLE_FULLSCREEN: "toggle-fullscreen",
 };
 
+type EventType = (typeof KeyboardEventTypes)[keyof typeof KeyboardEventTypes];
+
 /** This mapping must always have the same keys as defined in KeyboardEventTypes! */
-const defaultShortcutMapping = {
+const defaultShortcutMapping: Record<EventType, string> = {
   [KeyboardEventTypes.NAVIGATE_TO_FIRST_CANVAS]: "ctrl+left",
   [KeyboardEventTypes.NAVIGATE_TO_LAST_CANVAS]: "ctrl+right",
   [KeyboardEventTypes.NAVIGATE_TO_NEXT_CANVAS]: "right,space",
@@ -24,7 +26,9 @@ const defaultShortcutMapping = {
   [KeyboardEventTypes.TOGGLE_FULLSCREEN]: "enter,f",
 };
 
-const createKeyboardEventsChannel = (shortcutMapping = {}) =>
+const createKeyboardEventsChannel = (
+  shortcutMapping: Partial<Record<EventType, string>> = {},
+) =>
   eventChannel((emit) => {
     Object.values(KeyboardEventTypes).forEach((eventType) => {
       const shortcut =
@@ -38,3 +42,4 @@ const createKeyboardEventsChannel = (shortcutMapping = {}) =>
   });
 
 export { createKeyboardEventsChannel, KeyboardEventTypes };
+export type { EventType };

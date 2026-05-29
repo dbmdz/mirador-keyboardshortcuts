@@ -1,6 +1,6 @@
-import Mirador from "mirador/dist/es/src/index";
+import Mirador from "mirador";
 
-import keyboardShortcutsPlugin from "../../src";
+import Plugin from ".";
 
 const config = {
   catalog: [
@@ -21,8 +21,14 @@ const config = {
     },
   ],
   id: "demo",
+  keyboardShortcuts: {
+    shortcutMappings: {
+      //"switch-to-book-view": "b"
+    },
+  },
   window: {
     allowFullscreen: true,
+    // TODO: Keyboard Shortcuts dort einbauen
   },
   windows: [
     {
@@ -32,11 +38,6 @@ const config = {
       view: "single",
     },
   ],
-  keyboardShortcuts: {
-    shortcutMapping: {
-      "toggle-fullscreen": "f",
-    },
-  },
 };
 
-Mirador.viewer(config, [...keyboardShortcutsPlugin]);
+Mirador.viewer(config, [...Plugin]);
