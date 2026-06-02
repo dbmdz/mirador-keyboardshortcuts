@@ -23,7 +23,7 @@ const config = {
   id: "demo",
   keyboardShortcuts: {
     shortcutMappings: {
-      //"switch-to-book-view": "b"
+      "toggle-fullscreen": "f",
     },
   },
   window: {

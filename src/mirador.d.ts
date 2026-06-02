@@ -46,4 +46,10 @@ declare module "mirador" {
   export function setPreviousCanvas(windowId: string): any;
 
   export function setWindowViewType(windowId: string, viewType: string): any;
+
+  export const FullScreenContext;
+
+  export function miradorSlice(
+    s: import("./state/reducers").State,
+  ): import("./state/reducers").State;
 }
