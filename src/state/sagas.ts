@@ -5,7 +5,6 @@ import {
   getCanvasGroupings,
   getConfig,
   getFocusedWindowId,
-  getFullScreenEnabled,
   getManifestUrl,
   getWindowViewType,
   setCanvas,
@@ -13,6 +12,7 @@ import {
   setPreviousCanvas,
   setWindowViewType,
 } from "mirador";
+import type { FullScreenHandle } from "react-full-screen";
 import { call, put, select, take, takeEvery } from "redux-saga/effects";
 
 import {
@@ -20,6 +20,7 @@ import {
   EventType,
   KeyboardEventTypes,
 } from "./events";
+import { getFullScreenHandle } from "./selectors";
 
 function* handleCanvasNavigationEvent({
   eventType,
@@ -56,11 +57,13 @@ function* handleCanvasNavigationEvent({
 }
 
 function* handleFullscreenEvent() {
-  const isFullscreenEnabled: boolean = yield select(getFullScreenEnabled);
-  yield put({
-    isFullscreenEnabled: !isFullscreenEnabled,
-    type: ActionTypes.SET_WORKSPACE_FULLSCREEN,
-  });
+  const { active, enter, exit }: FullScreenHandle =
+    yield select(getFullScreenHandle);
+  if (active) {
+    void exit();
+  } else {
+    void enter();
+  }
 }
 
 function* handleViewTypeEvent({
