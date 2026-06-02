@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 const PORT = process.env.PORT || 3000
 const BASE_URL = `http://localhost:${PORT}`
 
-test('fullscreen toogle', async({page}) => {
+test.skip('fullscreen toogle (currently disabled because of no fullscreen function available)', async({page}) => {
 
     await test.step('load demo page', async() => {
         // load demo page

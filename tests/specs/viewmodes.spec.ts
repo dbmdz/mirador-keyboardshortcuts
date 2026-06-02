@@ -1,12 +1,20 @@
-import { test, expect } from '@playwright/test';
-import { locators } from '../locators/mirador';
+import { test, expect, Page } from '@playwright/test';
 
-async function checkExpectedView(page: any, expected: 'single' | 'book' | 'gallery' ) {
+const PORT = process.env.PORT || 3000
+const BASE_URL = `http://localhost:${PORT}`
+
+async function checkExpectedView(page: Page, expected: 'single' | 'book' | 'gallery' ) {
     // click on "Window views & thumbnail display" button
-    await page.locator('button[aria-label="Window views & thumbnail display"]').click();
+    const button = page.getByRole('button', {
+        name: /window views/i,
+    });
+    await button.click();
+
     // fetch the menu
-    const menu = page.locator('ul.MuiMenu-list');
-    const icons = menu.locator('svg[value]');
+    const navigationMenu = page.locator('[role="menu"], .MuiPopover-root, .MuiMenu-root');
+    
+    // retrieve the icons
+    const icons = navigationMenu.locator('svg[value]');
 
     // now check of the first three icons, which icon is highlighted and read its value below
     let selectedValue: string | null = null;
@@ -33,7 +41,7 @@ test('view modes by keyboard', async({page}) => {
 
    await test.step('load demo page', async() => {
         // load demo page
-        await page.goto('http://localhost:3000');
+        await page.goto(BASE_URL);
 
         // verify, that the page is loaded, initial in single view mode
         await checkExpectedView(page, "single");
