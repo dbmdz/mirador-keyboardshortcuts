@@ -1,5 +1,7 @@
 import { defineConfig } from '@playwright/test';
 
+const PORT = process.env.PORT || 3000
+
 export default defineConfig({
   use: {
     browserName: 'chromium',
@@ -11,9 +13,9 @@ export default defineConfig({
     },
   },
   webServer: {
-    command: 'NODE_OPTIONS=--openssl-legacy-provider npm run start',
-    port: 3000,
-    timeout: 120000, // wie lange gewartet wird, bis Server läuft
+    command: `npm start -- --port ${PORT}`,
+    url: `http://localhost:${PORT}`,
+    timeout: 120000,
     reuseExistingServer: !process.env.CI,
   },
 });

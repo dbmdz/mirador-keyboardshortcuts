@@ -1,10 +1,13 @@
 import { test, expect } from '@playwright/test';
 
+const PORT = process.env.PORT || 3000
+const BASE_URL = `http://localhost:${PORT}`
+
 test('fullscreen toogle', async({page}) => {
 
     await test.step('load demo page', async() => {
         // load demo page
-        await page.goto('http://localhost:3000');
+        await page.goto(BASE_URL);
     });
 
     await test.step('send application into fullscreen mode', async() => {
