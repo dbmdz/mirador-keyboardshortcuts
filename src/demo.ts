@@ -22,7 +22,7 @@ const config = {
   ],
   id: "demo",
   keyboardShortcuts: {
-    shortcutMappings: {
+    shortcutMapping: {
       "toggle-fullscreen": "f",
     },
   },
