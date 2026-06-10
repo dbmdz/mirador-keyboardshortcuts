@@ -22,7 +22,7 @@ test("canvas nagivation by keyboard", async ({ page }) => {
     // extract the number of total canvases
     const text = await locator.innerText();
     const match = /(\d+) of (\d+)/.exec(text);
-    if (!match) throw new Error("Counter konnte nicht extrahiert werden");
+    if (!match) throw new Error("The counters could not be extracted.");
 
     currentCanvas = Number(match[1]);
     totalCanvases = Number(match[2]);
