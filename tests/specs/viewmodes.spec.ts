@@ -22,7 +22,7 @@ async function checkExpectedView(
   // retrieve the icons
   const icons = navigationMenu.locator("svg[value]");
 
-  // now check of the first three icons, which icon is highlighted and read its value below
+  // now check which icon is highlighted and read its value below
   let selectedValue: string | null = null;
   let selectedCount = 0;
 
