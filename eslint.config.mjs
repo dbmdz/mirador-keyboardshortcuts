@@ -73,6 +73,19 @@ export default defineConfig([
     "**/eslint.config.mjs",
     "**/vite.config.ts",
     "**/vite-env.d.ts",
+    "**/playwright.config.*",
   ]),
+  {
+    files: ["tests/**/*.ts"],
+    languageOptions: {
+      parser: tsParser,
+      ecmaVersion: "latest",
+      sourceType: "module",
+      parserOptions: {
+        project: ["./tsconfig.json", "./tsconfig.node.json"],
+        tsconfigRootDir: import.meta.dirname,
+      },
+    },
+  },
 ]);
 
