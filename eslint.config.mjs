@@ -26,7 +26,11 @@ export default defineConfig([
         ecmaFeatures: {
           jsx: true,
         },
-        project: ["./tsconfig.json", "./tsconfig.node.json"],
+        project: [
+          "./tsconfig.json",
+          "./tsconfig.e2e.json",
+          "./tsconfig.node.json",
+        ],
         tsconfigRootDir: import.meta.dirname,
       },
     },
@@ -71,8 +75,8 @@ export default defineConfig([
   globalIgnores([
     "**/dist",
     "**/eslint.config.mjs",
+    "**/playwright.config.js",
     "**/vite.config.ts",
     "**/vite-env.d.ts",
   ]),
 ]);
-

@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    // Base Options recommended for all projects
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "target": "es2022",
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "moduleDetection": "force",
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    // We are not transpiling, so preserve our source code and do not emit files
+    "module": "preserve",
+    "emitDeclarationOnly": true,
+    "lib": [
+      "es2022"
+    ],
+    "strictNullChecks": true
+  },
+  // Include the necessary files for your project
+  "include": ["tests/**/*.ts"]
+}
