@@ -22,10 +22,9 @@ async function checkExpectedView(
   let selectedValue: string | null = null;
   let selectedCount = 0;
 
-  // retrieve the menuitemradios
+  // retrieve the menuitemradios, but evaluate only the first three of them
   const menuitemradios = navigationMenu.getByRole("menuitemradio");
-  for (let i = 0; i < Math.min(3, await menuitemradios.count()); i++) {
-    const menuitemradio = menuitemradios.nth(i);
+  for (const menuitemradio of (await menuitemradios.all()).slice(0, 3)) {
     const attrChecked = await menuitemradio.getAttribute("aria-checked");
 
     if (attrChecked === "true") {
@@ -34,6 +33,7 @@ async function checkExpectedView(
     }
   }
 
+  // Do we have the expected match?
   expect(selectedCount).toBe(1);
   expect(selectedValue).toBe(expected);
 
