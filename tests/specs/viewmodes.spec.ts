@@ -67,4 +67,12 @@ test("view modes by keyboard", async ({ page }) => {
     // verify, that we are in the book view
     await checkExpectedView(page, "book");
   });
+
+  await test.step("change to single page view", async () => {
+    // keypress "s" to single page view
+    await page.keyboard.press("s");
+
+    // verify, that we are in the book view
+    await checkExpectedView(page, "single");
+  });
 });
