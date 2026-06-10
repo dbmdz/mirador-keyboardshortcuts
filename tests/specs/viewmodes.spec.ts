@@ -24,9 +24,9 @@ async function checkExpectedView(
 
   // retrieve the menuitemradios
   const menuitemradios = navigationMenu.getByRole("menuitemradio");
-  for (let i=0; i<Math.min(3, (await menuitemradios.count())); i++) {
+  for (let i = 0; i < Math.min(3, await menuitemradios.count()); i++) {
     const menuitemradio = menuitemradios.nth(i);
-    const attrChecked = (await menuitemradio.getAttribute("aria-checked"));
+    const attrChecked = await menuitemradio.getAttribute("aria-checked");
 
     if (attrChecked === "true") {
       selectedCount++;
