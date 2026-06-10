@@ -19,20 +19,18 @@ async function checkExpectedView(
     '[role="menu"], .MuiPopover-root, .MuiMenu-root',
   );
 
-  // retrieve the icons
-  const icons = navigationMenu.locator("svg[value]");
-
-  // now check which icon is highlighted and read its value below
   let selectedValue: string | null = null;
   let selectedCount = 0;
 
-  for (let i = 0; i < 3; i++) {
-    const icon = icons.nth(i);
-    const classAttr = await icon.getAttribute("class");
+  // retrieve the menuitemradios
+  const menuitemradios = navigationMenu.getByRole("menuitemradio");
+  for (let i=0; i<Math.min(3, (await menuitemradios.count())); i++) {
+    const menuitemradio = menuitemradios.nth(i);
+    const attrChecked = (await menuitemradio.getAttribute("aria-checked"));
 
-    if (classAttr?.includes("MuiSvgIcon-colorSecondary")) {
+    if (attrChecked === "true") {
       selectedCount++;
-      selectedValue = await icon.getAttribute("value");
+      selectedValue = (await menuitemradio.innerText()).toLowerCase();
     }
   }
 
