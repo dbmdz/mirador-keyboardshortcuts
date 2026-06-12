@@ -28,7 +28,6 @@ const config = {
   },
   window: {
     allowFullscreen: true,
-    // TODO: Keyboard Shortcuts dort einbauen
   },
   windows: [
     {
