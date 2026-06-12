@@ -26,4 +26,4 @@ const keyboardShortcutsReducer = (
 };
 
 export { keyboardShortcutsReducer };
-export type { State };
+export type { KeyboardShortcutsState, State };

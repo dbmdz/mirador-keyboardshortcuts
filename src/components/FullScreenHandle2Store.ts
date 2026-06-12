@@ -19,3 +19,4 @@ const FullScreenHandle2Store = ({ storeFullScreenHandle }: Props) => {
 };
 
 export default FullScreenHandle2Store;
+export type { Props };

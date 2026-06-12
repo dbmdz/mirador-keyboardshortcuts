@@ -20,4 +20,4 @@ const storeFullScreenHandle = (
 });
 
 export { PluginActionType, storeFullScreenHandle };
-export type { PluginAction };
+export type { PluginAction, StoreFullScreenHandleAction };
