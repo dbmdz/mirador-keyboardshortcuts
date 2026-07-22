@@ -26,12 +26,6 @@ async function checkExpectedView(
   // retrieve the menuitemradios, but evaluate only the first three of them
   const menuitemradios = navigationMenu.getByRole("menuitemradio");
 
-  let buttonId=0;
-  for (const menuitemradio of (await menuitemradios.all())) {
-    console.log(buttonId++ + ": " + (await menuitemradio.innerHTML()));
-  }
-
-
   for (const menuitemradio of (await menuitemradios.all()).slice(0, 3)) {
     const attrChecked = await menuitemradio.getAttribute("aria-checked");
 
