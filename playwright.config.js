@@ -12,6 +12,7 @@ export default defineConfig({
     expect: {
       timeout: 30000,
     },
+    locale: "de-DE",
   },
   webServer: {
     command: `npm start -- --port ${PORT}`,
