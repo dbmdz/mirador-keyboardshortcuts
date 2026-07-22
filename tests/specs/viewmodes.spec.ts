@@ -28,6 +28,12 @@ async function checkExpectedView(
   for (const menuitemradio of (await menuitemradios.all()).slice(0, 3)) {
     const attrChecked = await menuitemradio.getAttribute("aria-checked");
 
+    console.log(
+      `checkExpectedView: ${expected}`,
+      await menuitemradio.innerText(),
+      attrChecked,
+    );
+
     if (attrChecked === "true") {
       selectedCount++;
       selectedValue = (await menuitemradio.innerText()).toLowerCase();

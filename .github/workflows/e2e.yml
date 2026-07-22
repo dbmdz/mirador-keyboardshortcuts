@@ -5,7 +5,7 @@ name: E2E tests
 on:
   push:
     branches:
-      - main
+      - debug-e2e
   pull_request:
     branches:
       - main
