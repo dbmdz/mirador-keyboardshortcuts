@@ -8,7 +8,9 @@ test.skip("fullscreen toogle (currently disabled because of no fullscreen evalua
 }) => {
   await test.step("load demo page", async () => {
     // load demo page
-    await page.goto(BASE_URL);
+    await page.goto(BASE_URL, {
+      waitUntil: "domcontentloaded",
+    });
   });
 
   await test.step("send application into fullscreen mode", async () => {

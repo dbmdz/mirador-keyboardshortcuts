@@ -11,12 +11,15 @@ test("canvas nagivation by keyboard", async ({ page }) => {
 
   await test.step("load demo page", async () => {
     // load demo page
-    await page.goto(BASE_URL);
+    await page.goto(BASE_URL, {
+      waitUntil: "domcontentloaded",
+    });
 
     // verify, that the page is properly loaded by evaluating the position counter
     // (beware, initially it is zero, and it takes a few updates until it reaches its
     // final number)
     const locator = page.locator(locators.positionCounter);
+    await locator.waitFor({ state: "visible" });
     await expect(locator).toHaveText(/[1-9]\d* of [1-9]\d*/);
 
     // extract the number of total canvases
