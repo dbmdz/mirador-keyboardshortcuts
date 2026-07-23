@@ -12,6 +12,9 @@ export default defineConfig({
     expect: {
       timeout: 30000,
     },
+    screenshot: "only-on-failure",
+    video: "retain-on-failure",
+    trace: "retain-on-failure",
   },
   webServer: {
     command: `npm start -- --port ${PORT}`,
