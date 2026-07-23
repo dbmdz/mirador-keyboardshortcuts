@@ -6,6 +6,7 @@ on:
   push:
     branches:
       - main
+      - e2e-ci-debug2
   pull_request:
     branches:
       - main
@@ -36,5 +37,5 @@ jobs:
         if: ${{ !cancelled() }}
         with:
           name: playwright-report
-          path: playwright-report/
+          path: out/report/
           retention-days: 30
