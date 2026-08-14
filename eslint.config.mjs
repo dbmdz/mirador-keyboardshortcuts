@@ -76,7 +76,7 @@ export default defineConfig([
     "**/dist",
     "**/eslint.config.mjs",
     "**/playwright.config.js",
-    "**/vite.config.ts",
+    "**/vite.config.*",
     "**/vite-env.d.ts",
   ]),
 ]);
