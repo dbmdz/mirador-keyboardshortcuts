@@ -8,11 +8,12 @@ async function checkExpectedView(
   page: Page,
   expected: "single" | "book" | "gallery",
 ) {
-  // click on "Window views & thumbnail display" button
-  const button = page.getByRole("button", {
+  const locatorWindowViewsButton = page.getByRole("button", {
     name: /window views/i,
   });
-  await button.click();
+  await locatorWindowViewsButton.waitFor({ state: "visible" });
+  // click on "Window views & thumbnail display" button
+  await locatorWindowViewsButton.click();
 
   // fetch the menu
   const navigationMenu = page.locator(
@@ -44,7 +45,9 @@ async function checkExpectedView(
 test("view modes by keyboard", async ({ page }) => {
   await test.step("load demo page", async () => {
     // load demo page
-    await page.goto(BASE_URL);
+    await page.goto(BASE_URL, {
+      waitUntil: "domcontentloaded",
+    });
 
     // verify, that the page is loaded, initial in single view mode
     await checkExpectedView(page, "single");
