@@ -1,10 +1,11 @@
-import { defineConfig } from '@playwright/test';
+import { defineConfig } from "@playwright/test";
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3000;
 
 export default defineConfig({
+  reporter: [["html", { outputFolder: "out/report", open: "never" }]],
   use: {
-    browserName: 'chromium',
+    browserName: "chromium",
     headless: true,
     timeout: 30000,
     navigationTimeout: 30000,
