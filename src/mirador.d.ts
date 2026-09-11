@@ -26,8 +26,6 @@ declare module "mirador" {
 
   export const getConfig: Selector<any, Config, any>;
 
-  export const getFullScreenEnabled: Selector<boolean, any, any>;
-
   export const getFocusedWindowId: Selector<any, string, any>;
 
   export const getManifestUrl: Selector<any, string, any>;
