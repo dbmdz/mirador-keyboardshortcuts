@@ -1,6 +1,5 @@
-import { FullScreenContext } from "mirador";
+import { FullScreenContext, type FullScreenHandle } from "mirador";
 import { useContext, useEffect } from "react";
-import type { FullScreenHandle } from "react-full-screen";
 
 interface Props {
   storeFullScreenHandle: (handle: FullScreenHandle) => void;

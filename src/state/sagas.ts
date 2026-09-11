@@ -1,5 +1,6 @@
 import {
   ActionTypes,
+  type FullScreenHandle,
   getAllowedWindowViewTypes,
   getCanvases,
   getCanvasGroupings,
@@ -12,7 +13,6 @@ import {
   setPreviousCanvas,
   setWindowViewType,
 } from "mirador";
-import type { FullScreenHandle } from "react-full-screen";
 import { call, put, select, take, takeEvery } from "redux-saga/effects";
 
 import {

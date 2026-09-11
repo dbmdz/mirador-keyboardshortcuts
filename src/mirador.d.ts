@@ -52,4 +52,10 @@ declare module "mirador" {
   export function miradorSlice(
     s: import("./state/reducers").State,
   ): import("./state/reducers").State;
+
+  declare interface FullScreenHandle {
+    active: boolean;
+    enter: () => void;
+    exit: () => void;
+  }
 }

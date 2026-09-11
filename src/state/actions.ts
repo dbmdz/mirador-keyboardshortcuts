@@ -1,4 +1,4 @@
-import type { FullScreenHandle } from "react-full-screen";
+import { type FullScreenHandle } from "mirador";
 
 enum PluginActionType {
   STORE_FULLSCREEN_HANDLE = "mirador-keyboardshortcuts/STORE_FULLSCREEN_HANDLE",

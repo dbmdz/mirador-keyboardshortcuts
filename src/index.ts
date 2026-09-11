@@ -1,4 +1,4 @@
-import type { FullScreenHandle } from "react-full-screen";
+import { type FullScreenHandle } from "mirador";
 
 import FullScreenHandle2Store from "./components/FullScreenHandle2Store";
 import { PluginAction, storeFullScreenHandle } from "./state/actions";

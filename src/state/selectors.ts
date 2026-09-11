@@ -1,5 +1,4 @@
-import { miradorSlice } from "mirador";
-import type { FullScreenHandle } from "react-full-screen";
+import { type FullScreenHandle, miradorSlice } from "mirador";
 
 import { State } from "./reducers";
 
